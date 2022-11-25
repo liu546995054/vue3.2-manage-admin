@@ -2,12 +2,16 @@
   <div class="navbar">
     <Hamburger />
     <Breadcrumb />
+    <div class="navbar-right">
+      <Avatar class="navbar-item" />
+    </div>
   </div>
 </template>
 
 <script setup>
 import Hamburger from './components/hamburger'
 import Breadcrumb from './components/breadcrumb'
+import Avatar from './components/avatar'
 </script>
 
 <style lang="scss" scoped>

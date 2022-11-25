@@ -1,10 +1,12 @@
 import { login as loginApi } from '@/api/login'
 import router from '@/router'
+import { menuList } from '@/api/menu'
 export default {
   namespaced: true,
   state: () => ({
     token: localStorage.getItem('token'),
-    sideType: true
+    sideType: true,
+    menus: []
   }),
   mutations: {
     setToken(state, token) {
@@ -13,6 +15,9 @@ export default {
     },
     changeType(state) {
       state.sideType = !state.sideType
+    },
+    setMenus(state, menus) {
+      state.menus = menus
     }
   },
   actions: {
@@ -20,6 +25,7 @@ export default {
       return new Promise((resolve, reject) => {
         loginApi(userinfo)
           .then((res) => {
+            console.log(res)
             commit('setToken', res.token)
             router.replace('/')
             resolve()
@@ -30,6 +36,18 @@ export default {
       }).catch((err) => {
         console.log(err)
       })
+    },
+    async getMenuAndPermission({ commit }) {
+      const r = await menuList({ pid: 10, roleId: 1 })
+      if (r.data) {
+        commit('setMenus', r.data)
+      }
+      return r && r.data ? r.data : []
+    },
+    logOut({ commit }) {
+      localStorage.setItem('token', '')
+      commit('setToken', '')
+      router.replace('/login')
     }
   }
 }

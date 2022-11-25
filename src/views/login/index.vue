@@ -30,7 +30,7 @@ import { useStore } from 'vuex'
 
 const store = useStore()
 
-const form = ref({ username: 'admin', password: '123456' })
+const form = ref({ username: 'admin', password: 'ny123456T@' })
 const type = ref('password')
 const rules = ref({
   username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],

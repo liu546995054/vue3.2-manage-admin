@@ -7,11 +7,12 @@ const webpack = require('webpack')
 module.exports = defineConfig({
   transpileDependencies: true,
   devServer: {
-    host: '192.168.0.110',
+    host: '192.168.3.77',
     port: 9800,
     proxy: {
       '/api': {
-        target: 'https://lianghj.top:8888/api/private/v1/',
+        // target: 'https://lianghj.top:8888/api/private/v1/',
+        target: 'http://192.168.1.222:28100/',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

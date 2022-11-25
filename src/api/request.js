@@ -16,12 +16,12 @@ service.interceptors.request.use(
 )
 service.interceptors.response.use(
   (response) => {
-    const { data, meta } = response.data
-    if (meta.status === 200 || meta.status === 201) {
+    const data = response.data
+    if (data.code === 200 || data.code === 201) {
       return data
     } else {
-      ElMessage.error(meta.msg)
-      return Promise.reject(new Error(meta.msg))
+      ElMessage.error(data.msg)
+      return Promise.reject(new Error(data.msg))
     }
   },
   (error) => {

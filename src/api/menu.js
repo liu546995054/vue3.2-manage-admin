@@ -1,7 +1,9 @@
 import request from '@/api/request'
 
-export const menuList = () => {
+export const menuList = (params) => {
   return request({
-    url: '/menus'
+    url: '/sys/permission/getSysMenus',
+    method: 'get',
+    params: params
   })
 }

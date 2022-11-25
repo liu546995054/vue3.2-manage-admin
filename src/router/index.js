@@ -4,25 +4,25 @@ import layout from '@/layout/index'
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'users',
     component: layout,
-    redirect: '/users',
+    redirect: '/users/list',
     children: [
       {
-        path: 'users',
-        name: 'users',
+        path: '/users/list',
+        name: 'list',
         component: () => import('@/views/user/index.vue')
-      },
-      {
-        path: 'roles',
-        name: 'roles',
-        component: () => import('@/views/role/index.vue')
-      },
-      {
-        path: 'rights',
-        name: 'rights',
-        component: () => import('@/views/auth/index.vue')
       }
+      // {
+      //   path: 'roles',
+      //   name: 'roles',
+      //   component: () => import('@/views/role/index.vue')
+      // },
+      // {
+      //   path: 'rights',
+      //   name: 'rights',
+      //   component: () => import('@/views/auth/index.vue')
+      // }
     ]
   },
   {

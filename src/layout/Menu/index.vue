@@ -9,46 +9,29 @@
     unique-opened
     :collapse="!$store.getters.sideType"
   >
-    <el-sub-menu
-      :index="'' + item.id"
-      v-for="(item, index) in menusList"
-      :key="item.id"
-    >
-      <template #title>
-        <el-icon>
-          <component :is="iconList[index]"></component>
-        </el-icon>
-        <span>{{ item.authName }}</span>
-      </template>
-      <el-menu-item
-        :index="'/' + it.path"
-        v-for="it in item.children"
-        :key="it.id"
-      >
-        <template #title>
-          <el-icon>
-            <component :is="icon"></component>
-          </el-icon>
-          <span>{{ it.authName }}</span>
-        </template>
-      </el-menu-item>
-    </el-sub-menu>
+    <SidebarItem :menus="menusList" />
   </el-menu>
 </template>
 
-<script setup>
-import { ref } from 'vue'
+<script>
+import { computed, defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
-import { menuList } from '@/api/menu'
-const iconList = ref(['user', 'role'])
-const icon = ref('menu')
-const menusList = ref([])
-const router = useRouter()
-const defaultActive = router.currentRoute.value.path
-const initMenuList = async () => {
-  menusList.value = await menuList()
-}
-initMenuList()
+import SidebarItem from '@/layout/Menu/sidebarItem'
+import { useStore } from 'vuex'
+export default defineComponent({
+  components: { SidebarItem },
+  setup() {
+    const store = useStore()
+    const router = useRouter()
+    const defaultActive = router.currentRoute.value.path
+    const menusList = computed(() => store.getters['menus'])
+
+    return {
+      defaultActive,
+      menusList
+    }
+  }
+})
 </script>
 
 <style scoped></style>
