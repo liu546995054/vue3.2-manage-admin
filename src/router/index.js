@@ -12,12 +12,12 @@ const routes = [
         path: '/users/list',
         name: 'list',
         component: () => import('@/views/user/index.vue')
-      }
-      // {
-      //   path: 'roles',
-      //   name: 'roles',
-      //   component: () => import('@/views/role/index.vue')
-      // },
+      },
+      {
+        path: '/users/roles',
+        name: 'roles',
+        component: () => import('@/views/role/index.vue')
+      },
       // {
       //   path: 'rights',
       //   name: 'rights',

@@ -10,14 +10,23 @@ module.exports = defineConfig({
     host: '192.168.3.77',
     port: 9800,
     proxy: {
-      '/api': {
+
+      '/koa': {
         // target: 'https://lianghj.top:8888/api/private/v1/',
-        target: 'http://192.168.1.222:28100/',
+        target: 'http://192.168.3.77:3000/',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': ''
+          '^/koa': ''
         }
-      }
+      },
+      '/java2api': {
+        // target: 'https://lianghj.top:8888/api/private/v1/',
+        target: 'http://192.168.1.222:28000/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/java2api': ''
+        }
+      },
     }
   },
   chainWebpack(config) {
